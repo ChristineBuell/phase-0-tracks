@@ -1,6 +1,6 @@
 # Git Definitions
 
-**Instructions:** Define each of the following Git concepts.
+**Instructions:** Define each of the following **Git** concepts.
 
 * What is version control? Why is it useful? 
    * Version control software keeps a chronological record of all changes made the project in a repository. If there is a computer failure, corrupted files, or human error such as someone adds untested code and breaks the software, the developers can go back to a previous working version.
