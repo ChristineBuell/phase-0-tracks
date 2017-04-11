@@ -1,0 +1,21 @@
+section#contact-info {
+	font-size: 0.8em;
+}
+
+   .job {
+	background-color: #e9e5dc;
+	border-radius: 25px;
+	padding: 20px;
+	margin-top: 20px;
+}
+	.list-fun{
+		font-size: 0.8em;
+	}
+ 
+ ol {
+	color: red;
+}
+h3:hover{
+	color: blue;
+}
+
