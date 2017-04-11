@@ -11,5 +11,11 @@ section#contact-info {
 	.list-fun{
 		font-size: 0.8em;
 	}
-
+ 
+ ol {
+	color: red;
+}
+h3:hover{
+	color: blue;
+}
 
