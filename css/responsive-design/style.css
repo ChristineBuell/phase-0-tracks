@@ -1,5 +1,5 @@
 main {
-  width: 756px;
+  width: 70%;
   display: inline;
   vertical-align: top;
   float: right;
@@ -8,7 +8,7 @@ main {
 }
 
 body {
-  width: 960px;
+  max-width: 960px;
 }
 blockquote {
   border-left: 5px solid blue;
@@ -24,11 +24,12 @@ cite {
 #external-links  {
   list-style-type: none;
   padding-left: 0px;
-  width: 200px; 
+  width: 25%; 
   display: inline;
   vertical-align: top;
   float: left;
   margin-top: 10px;
+
 
 
 }
@@ -52,4 +53,42 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+/*@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+} */
+
+@media screen and (max-width: 500px) {
+  main{
+    position: relative;
+  }
+  h1 {
+    font-size: 60%;
+
+
+  }
+    #external-links {
+      position: relative;
+      width: 300px;
+      height: 100px;
+      padding: 20px;
+      top: 50%;
+      left: 50%;
+      margin: 0px 0 0 -120px;
+
+
+   /* position: static;
+   float: none;
+   padding-left: 20%;
+   vertical-align: top;
+  width: 70%;
+  display: block;*/
+    
+
+  }
+  #external-links h1 {
+    margin-left: 8%;
+  }
 }
