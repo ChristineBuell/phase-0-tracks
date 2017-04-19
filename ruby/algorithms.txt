@@ -1,0 +1,42 @@
+Christine Buell
+4.2 
+
+Robot Takes the Elevator to First Floor
+
+Step towards elevator door.
+Push button with arrow pointing down.
+Wait for doors to open
+	Does arrow in elevator point up or down
+	If up: wait for next time
+		else: step inside elevator.
+
+Once in elevator: turn 180 degrees to face front.
+Locate floor buttons.
+Push button marked "1".
+Doors will close
+Wait for doors to open
+	If lit number on panel is greater than 1:
+		Wait for number to be 1
+Wnen doors open and number lit on panel is 1: 
+Step out of elevator.				
+Now arrived at first floor
+
+
+
+Selecting a drink
+
+Ask drinkers age.
+Open refrigerator. 
+Examine drink shelf.
+   If drinks on shelf = 0
+		Shut fridge, get tap water
+   Else if drinker's age 21 or greater
+		Select beer
+   Else  
+		Select Pepsi
+
+Repeat until people needing drinks is 0.
+
+
+
+
