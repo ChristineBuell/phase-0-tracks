@@ -38,6 +38,8 @@ insurance = gets.chomp()
 #Check for allergies
 puts "Please tell what allergies you have"
 puts "When you are finished type the word done"
+
+#Flag for sunshine allergy
 is_vampire = nil
 allergy = gets.chomp()
 while allergy.downcase != "done"
@@ -57,24 +59,38 @@ if this_year - birth_year == age
 else 
 	age_check = false
 end		
-
+vampire_conclusion = nil
 #Vampire Drill Down!
+#If sunshine allergy checked, they skip straight to "definitely a vampire" as
+#instructed. All other combinations go through all the choices.
+if is_vampire == nil
+	if age_check == true && (garlic == "y" || insurance == "y")
+		vampire_conclusion = " is probably not a vampire."
+	end
+	if age_check == false && (garlic == "n" || insurance == "n")
+		vampire_conclusion = " might be a vampire."
+	end
+	if age_check == false && (garlic == "n" && insurance == "n")
+		vampire_conclusion = " is almost certainly a vampire."
+	end
+end
+
 	if name == "Drake Cula" || name == "Tu Fang" || is_vampire == true
-		print "Definitely a vampire"
-	elsif age_check == false && (garlic == "n" && insurance == "n")
-		puts "Almost certainly a vampire"
-	elsif age_check == false && (garlic == "n" || insurance == "n")
-		puts "Might be a vampire"
-	elsif age_check == true && (garlic == "y" || insurance == "y")
-		puts "Probably not a vampire"
-	else
-		puts "Results inconclusive"	
+		vampire_conclusion = " is definitely a vampire!"
+	end
+	
+	if is_vampire == nil && vampire_conclusion == nil
+		vampire_conclusion = "\'s results inconclusive."
 	end
 
 #decrement counter
 number -= 1
+puts ""
+puts "And the conclusion is: #{name}#{vampire_conclusion}"
+puts ""
 end
- puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends. :-)" 
+
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends. :-)" 
 
 
 
