@@ -90,7 +90,7 @@ password = gets.chomp
 
 if choice == "e"
 	encrypt(password)
-else choice == "d"
+else 
 	decrypt(password)
 end
 
