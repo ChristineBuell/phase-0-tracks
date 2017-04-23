@@ -25,6 +25,7 @@ while index < password.length
 	    password[index] = alphabet[a + 1]
 	end 
 	index += 1
+	password
 end
 #'p' returns the value
 p password
@@ -107,8 +108,7 @@ end
 #decrypt(password)
 
 #At first the nested method call didn't work.  We'd used "puts" to print out the data, but it wasn't returning it.
-#Using 'p' caused the encrypt method to return the value in "password", which was then passed in to the decrypt method. Putting an 
-#implicit return of the variable "password" had also worked.
+#Using 'p' caused the encrypt method to return the value in "password", which was then passed in to the decrypt method. 
 
 #password = "swordfish"
 #decrypt(encrypt(password))
