@@ -7,7 +7,7 @@
  "iNvEsTiGaTiOn".swapcase
 # => “InVeStIgAtIoN”
 
-#Since you asked for alternates I thought I'd mention: 
+#This could be used for several of these, it's not ideal but I thought I'd mention: 
 "zom".replace("zoom")
 
 #But this is a better solution:
