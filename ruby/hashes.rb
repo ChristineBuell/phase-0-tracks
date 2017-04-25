@@ -7,66 +7,71 @@ Print final version and exit
 =end
 
 client_info = {
-	"full_name" => "",
-	age: nil,
-	num_children: nil,
+
+	full_name: "",
+	age: 0,
+	num_children: 0,
 	theme: "",
 	color_pref: "",
-	sq_ft: nil,
-	num_pets: nil,
+	sq_ft: 0,
+	num_pets: 0,
 	cats: "",
 	dogs: "",
-	budget: nil
+	budget: 0
 
 }
-
-puts "Client Name"
-full_name = gets.chomp
-puts "#{full_name}'s age"
-age = gets.chomp.to_i 
+puts "Please fill out client form."
+puts "Client's full name"
+client_info[:full_name] = gets.chomp
+puts "client's age"
+client_info[:age] = gets.chomp
 puts "How many childern live in the home? (0-?)"
-num_children = gets.chomp.to_i
+client_info[:num_children] = gets.chomp
 puts "Desired theme for home"
-theme = gets.chomp
+client_info[:theme] = gets.chomp
 puts "Preferred color?"
-color_pref = gets.chomp
+client_info[:color_pref] = gets.chomp
 puts "Home's square footage?"
-sq_ft = gets.chomp.to_i
-puts "How many pets does #{full_name} have? (0-?)"
-num_pets = gets.chomp.to_i
+client_info[:sq_ft] = gets.chomp
+puts "How many pets in the home? (0-?)"
+client_info[:num_pets] = gets.chomp
 puts "Any cats? (y/n)"
-cats = gets.chomp
-if cats != "y" || cats != "n"
- 	until cats == "y" || cats == "n"
+client_info[:cats] = gets.chomp
+if client_info[:cats] != "y" || client_info[:cats] != "n"
+ 	until client_info[:cats] == "y" || client_info[:cats] == "n"
  		puts "This is a yes or no answer! Please enter (y/n)"
- 		cats = gets.chomp
+ 		client_info[:cats] = gets.chomp
  	end
 end
 puts "Any dogs? (y/n)"
-dogs = gets.chomp
-if dogs != "y" || dogs != "n"
- 	until dogs != "y" || dogs != "n"
+client_info[:dogs] = gets.chomp
+if client_info[:dogs] != "y" || client_info[:dogs] != "n"
+ 	until client_info[:dogs] == "y" || client_info[:dogs] == "n"
  		puts "This is a yes or no answer! Please enter (y/n)"
- 		dogs = gets.chomp
+ 		client_info[:dogs] = gets.chomp
  	end
  end
-puts "How much does the #{full_name} want to spend? (xxxx.xx)"
-budget = gets.chomp.to_f
+puts "How much does the client want to spend? (xxxx.xx)"
+client_info[:budget] = gets.chomp
+
+p client_info
 
 
 
 
-puts "Client's name: #{full_name}"
-puts "Age #{age}"
-puts "#{full_name} has #{num_children} children in the home"
-puts "Chosen theme: #{theme}"
-puts "#{full_name} prefers the color #{color_pref}"
-puts "The home is #{sq_ft} square feet"
-puts "Pets: #{num_pets}"
-puts "Cats: #{cats}"
-puts "Dogs: #{dogs}"
-#Forces 2 0's after decimal point.
-puts "#{full_name} has a budget of around $%0.2f" % [budget]
+puts "Do you want to want to make any changes to the information shown?"
+puts "Type done to exit"
+update = gets.chomp
+if update != "done" 
+	puts "which value do you wish to change?"
+	value = gets.chomp.to_sym
+	puts "Enter a new value"
+	client_info[value] = gets.chomp
+end
+
+p "Completed Form"
+p client_info
+
 
 
 
