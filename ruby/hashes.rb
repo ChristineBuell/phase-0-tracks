@@ -6,6 +6,8 @@ user must type 'none'
 Print final version and exit
 =end
 
+#Array example commented out at the bottom!!
+
 client_info = {
 
 	full_name: "",
@@ -24,9 +26,9 @@ puts "Please fill out client form."
 puts "Client's full name"
 client_info[:full_name] = gets.chomp
 puts "client's age"
-client_info[:age] = gets.chomp
+client_info[:age] = gets.chomp.to_i
 puts "How many childern live in the home? (0-?)"
-client_info[:num_children] = gets.chomp
+client_info[:num_children] = gets.chomp.to_i
 puts "Desired theme for home"
 client_info[:theme] = gets.chomp
 puts "Preferred color?"
@@ -34,7 +36,8 @@ client_info[:color_pref] = gets.chomp
 puts "Home's square footage?"
 client_info[:sq_ft] = gets.chomp
 puts "How many pets in the home? (0-?)"
-client_info[:num_pets] = gets.chomp
+client_info[:num_pets] = gets.chomp.to_i
+if client_info[:num_pets] > 0 
 puts "Any cats? (y/n)"
 client_info[:cats] = gets.chomp
 if client_info[:cats] != "y" || client_info[:cats] != "n"
@@ -51,28 +54,36 @@ if client_info[:dogs] != "y" || client_info[:dogs] != "n"
  		client_info[:dogs] = gets.chomp
  	end
  end
-puts "How much does the client want to spend? (xxxx.xx)"
-client_info[:budget] = gets.chomp
-
-p client_info
-
-
-
-
-puts "Do you want to want to make any changes to the information shown?"
-puts "Type done to exit"
-update = gets.chomp
-if update != "done" 
-	puts "which value do you wish to change?"
-	value = gets.chomp.to_sym
-	puts "Enter a new value"
-	client_info[value] = gets.chomp
 end
+puts "How much does the client want to spend? (xxxx.xx)"
+client_info[:budget] = gets.chomp.to_f
 
-p "Completed Form"
 p client_info
 
+#Here is my accomplishemnts array! 
+
+=begin
+
+# Initialize array with values
+accomplishments = ["git", "html", "css", "data types", "irb", "debugging", "looping", "if/elsif/else"]
+puts "Here are some accomplishments for the past few weeks #{accomplishments}"
+puts ""
+# Insert new value at index 3
+accomplishments.insert(3, "algorithms")
+
+latest_accomplishment = "used data structures in Ruby"
+# Added "used data structures in Ruby" to array of accomplishments. 
+accomplishments.push(latest_accomplishment)
 
 
+#print out new array
+puts "Here is my updated accomplishment list:"
+array_length = accomplishments.length
+index = 0
 
+while index < array_length 
+puts accomplishments[index]
+index += 1
+end
+=end
 
