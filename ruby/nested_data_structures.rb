@@ -60,5 +60,21 @@ bookshelf = [
       }]]
     
  
-p bookshelf[0][1]["title"]
-p first_shelf[2]
+
+# All caps for title of second book on first shelf 
+puts bookshelf[0][1]["title"].upcase
+# Prints third book on the first shelf
+puts first_shelf[2]
+# Also prints third book on first shelf
+puts bookshelf[0][2]
+
+#changes the amount of pages in book to 200
+puts bookshelf[1][1]
+bookshelf[1][1]["number of pages"] = 200 
+puts bookshelf[1][1]
+
+
+
+
+
+
