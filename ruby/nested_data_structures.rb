@@ -1,50 +1,64 @@
 
 
-#bookshelf array shelves 
-#hash: title author topic
-
 bookshelf = [
-	["book 1", "book 2","book 3"],
-	["book 4", "book 5", "book 6"]
-]
-		 
-p bookshelf[0]
-p bookshelf[1]
-p bookshelf[0][1]
-
-
-bookshelf = [
-	[first_class: {
-        pretty_name: 'First Class',
-        seat_info: {
-            total_seats: 6,
-            seats_available: 4
-        },
-        meals: [
-            "Leg of Pampered Lamb", 
-            "Kale Salad"
-        ]
-    },
-    business_class: {
-        pretty_name: 'Business Class',
-        seat_info: {
-            total_seats: 12,
-            seats_available: 9
-        },
-        meals: [
-            "Sustainably Cultivated Lobster with Housemade Butter", 
-            "Kale Salad"
-        ]
-    },
-    coach: {
-        pretty_name: 'Coach',
-        seat_info: {
-            total_seats: 50,
-            seats_available: 23
-        },
-        meals: []
-    }
-    ]
+  first_shelf = [
+    {
+      "title" => "Beginning Ruby",
+      "author" => "Peter Cooper",
+      "publication year" => "2016",
+      "number of pages" => 454
+      }, 
+     {
+        "title" => "The Well-Grounded Rubyist",
+      "author" => "David A. Black",
+      "publication year" => "2014",
+      "number of pages" => 506
+      },
+      {
+      "title" => "The Book Of CSS3",
+      "author" => "Peter Gasston",
+      "publication year" => "2015",
+      "number of pages" => 279
+      }],
+  second_shelf = [
+    {
+      "title" => "Eloquent Javascript",
+      "author" => "Marijn Haverbeke",
+      "publication year" => "2015",
+      "number of pages" => 451
+      }, 
+      {
+        "title" => "Programming iOS 10",
+      "author" => "Matt Neuburg",
+      "publication year" => "2017",
+      "number of pages" => 1057
+      },
+     {
+      "title" => "Game Development With Swift",
+      "author" => "Stephen Haney",
+      "publication year" => "2015",
+      "number of pages" => 199
+      }],
+  third_shelf = [
+      {
+      "title" => "The Magic of Shetland Lace Knitting",
+      "author" => "Elizabeth Lovick",
+      "publication year" => "2013",
+      "number of pages" => 143
+      }, 
+      {
+        "title" => "200 Fair Isle Motifs",
+      "author" => "Mary Jane Mucklestone",
+      "publication year" => "2011",
+      "number of pages" => 207
+      },
+     {
+      "title" => "the life-changing magic of tidying up",
+      "author" => "Marie Kondo",
+      "publication year" => "2014",
+      "number of pages" => 213
+      }]]
     
-
-p bookshelf[0]
+ 
+p bookshelf[0][1]["title"]
+p first_shelf[2]
