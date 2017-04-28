@@ -27,17 +27,17 @@ input_index = 0
 puts "Enter a first name to encode or type done"
 new_name = gets.chomp.downcase
 while new_name != "done"
-puts input_index
-real_name[input_index][0] = new_name
-puts real_name[input_index][0]
-puts "Now enter a last name to encode"
-real_last_name = gets.chomp.downcase
-code_name[input_index][1] = real_last_name
-puts code_name[input_index][1]
+	puts input_index
+	real_name[input_index][0] = new_name
+	puts real_name[input_index][0]
+	puts "Now enter a last name to encode"
+	real_last_name = gets.chomp.downcase
+	code_name[input_index][1] = real_last_name
+	puts code_name[input_index][1]
 
-input_index += 1 
-
-
+#input_index += 1 
+is_encoded = 0
+while is_encoded < 2
 name = new_name.split('')
 
 name_index = 0
