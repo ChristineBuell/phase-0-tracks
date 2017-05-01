@@ -95,17 +95,30 @@ extinct_animals = {
 
 # 1. Iterate through extinct_animals hash, printing each key/value pair
 # with a dash in between the key and value, and an asterisk between each pair.
+extinct_animals.map do |animal, year|
+  if index < 6
+    print  "#{animal}-#{ year}*"
+  else
+    print "#{animal}-#{ year}" 
+  end
+  index += 1 
+end
 
 
 # 2. Keep only animals in extinct_animals if they were extinct before
 # the year 2000. Do not use any special built-in methods.
-# ----
+#This is the only way I've been able to get it to work so far:
+extinct_animals.delete_if{|k,v| v > 1999}
 
 # 3. Our calculations were completely off, turns out all of those animals went
 # extinct 3 years before the date provided. Update the values in extinct_animals
 # so they accurately reflect what year the animal went extinct.
 # Do not use any special built-in methods.
-# ----
+#extinct_animals.update(extinct_animals){|k,v| v -= 3}
+extinct_animals.map do |animal, year|
+  extinct_animals[animal] = year -= 3
+ 
+end
 
 # 4. You've heard that the following animals might be extinct, but you're not sure.
 # Check if they're included in extinct_animals, one by one:
@@ -124,7 +137,6 @@ extinct_animals.each do |animal, year|
     end 
   end
 
- 
 
 # 5. We just found out that the Passenger Pigeon is actually not extinct!
 # Remove them from extinct_animals and return the key value pair as a two item array.
@@ -134,5 +146,6 @@ temp = {}
 temp = extinct_animals.select{|k,v| k == "Passenger Pigeon"}
 temp.merge!(extinct_animals){|k,v1,v2|v1}
 extinct_animals = temp
-extinct_animals.shift
+return_deleted = extinct_animals.shift
 puts extinct_animals
+p return_deleted 
