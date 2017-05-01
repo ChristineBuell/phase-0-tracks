@@ -5,11 +5,35 @@ zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
 
 # 1. Iterate through the zombie_apocalypse_supplies array,
 # printing each item in the array separated by an asterisk
-# ----
+                              
+supply_list = zombie_apocalypse_supplies.join("*")
+print supply_list
 
 # 2. In order to keep yourself organized, sort your zombie_apocalypse_supplies
-# in alphabetical order. Do not use any special built-in methods.
-# ----
+# in alphabetical order. Do not use any special built-in methods. 
+
+
+list_length = zombie_apocalypse_supplies.count
+puts list_length
+index = 0
+swap_flag = true
+
+while swap_flag == true
+  swap_flag = false
+  while index < list_length - 1
+    if zombie_apocalypse_supplies[index].downcase.ord > zombie_apocalypse_supplies[index + 1].downcase.ord
+      z_temp = zombie_apocalypse_supplies[index + 1]
+      zombie_apocalypse_supplies[index + 1] = zombie_apocalypse_supplies[index]
+      zombie_apocalypse_supplies[index] = z_temp
+      swap_flag = true
+    end
+    index += 1
+  end
+  index = 0
+end
+puts "Sorted list: "
+print zombie_apocalypse_supplies
+
 
 # 3. Create a method to see if a particular item (string) is in the
 # zombie_apocalypse_supplies. Do not use any special built-in methods.
@@ -19,7 +43,20 @@ zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
 # 4. You can't carry too many things, you've only got room in your pack for 5.
 # Remove items in your zombie_apocalypse_supplies in any way you'd like,
 # leaving only 5. Do not use any special built-in methods.
-# ----
+=begin
+  
+rescue Exception => e
+  
+end
+index = 0
+z_length = zombie_apocalypse_supplies.length
+while index < z_length
+  if index > 4
+    zombie_apocalypse_supplies[index] = nil 
+  end
+  index += 1 
+end
+p zombie_apocalypse_supplies
 
 # 5. You found another survivor! This means you can combine your supplies.
 # Create a new combined supplies list out of your zombie_apocalypse_supplies
@@ -28,7 +65,7 @@ zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
 # documentation for Arrays.
 other_survivor_supplies = [ "warm clothes", "rations", "compass", "camp stove",
                             "solar battery", "flashlight"]
-# ----
+zombie_apocalypse_supplies.concat(other_survivor_supplies).uniq
 
 # Hash Drills
 
