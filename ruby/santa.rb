@@ -16,7 +16,29 @@ class Santa
 	def eat_milk_and_cookies(cookie) 
 		puts "That was a good #{cookie}"
 	end
-
+	def celebrate_birthday 
+		@age += 1 
+	end
+	def get_mad_at(reindeer)
+		index = 0
+		while index < @reindeer_ranking.count
+			if reindeer == @reindeer_ranking[index]
+			  	@reindeer_ranking.push(reindeer)
+			  @reindeer_ranking.delete_at(index)
+				break
+			end
+			index += 1
+		end
+	end
+	def gender=(new_gender)
+		@gender = new_gender
+	end
+	def age
+		@age 
+	end
+	def ethnicity
+		@ethnicity
+	end
 end
 
 santas = []
@@ -28,9 +50,13 @@ genders.length.times do |i|
 	e = 1 + rand(7)
   santas << Santa.new(genders[g], ethnicities[e])
 end
-
-
-p santas
-
+santas[2].gender = "whatever"
+santas[2].celebrate_birthday
+puts santas[2].ethnicity
+puts santas[2].age
+#p santas[2]
+#p santas
+santas[2].get_mad_at("Dasher")
+p santas[2]
 
 
