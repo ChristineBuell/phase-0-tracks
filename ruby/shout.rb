@@ -21,7 +21,7 @@ Shout.yelling_happily("Have a nice day")
 
 module Shout
 	def yell_angrily(words)
-		puts words + "!!!" + " 8-(("
+		puts words + "!!!" + " :("
 	end
 
 	def yelling_happily(words)
@@ -29,10 +29,20 @@ module Shout
 	end
 end
 
-class Noise
+class Coach
 	include Shout
 end
 
-shout = Noise.new 
-shout.yelling_happily("Yay")
-shout.yell_angrily("Arrgh")
+class Sister
+	include Shout
+end
+
+
+
+coach = Coach.new 
+coach.yelling_happily("Good Job")
+coach.yell_angrily("Are you blind?")
+
+sister = Sister.new
+sister.yelling_happily("Yay")
+sister.yell_angrily("I'm telling Mom")
