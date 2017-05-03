@@ -5,7 +5,6 @@ class Santa
 	attr_accessor :gender 
 
 	def initialize(gender, ethnicity)
-	  
 	  @gender = gender
 	  @ethnicity = ethnicity
 	  @age = 1 + rand(140)
@@ -17,12 +16,14 @@ class Santa
 	end
 
 	def eat_milk_and_cookies(cookie) 
+		# Takes in a cookie type
 		puts "That was a good #{cookie}"
 	end
 	def celebrate_birthday 
 		@age += 1 
 	end
 	def get_mad_at(reindeer)
+		# Reinder put in the back of the array
 		index = 0
 		while index < @reindeer_ranking.count
 			if reindeer == @reindeer_ranking[index]
@@ -44,7 +45,7 @@ index = 0
 while index < 50
 	#randomizes individually
 	g = 1 + rand(7)
-	e = 1 + rand(10)
+	e = 1 + rand(9)
 	#initializes a santa
     santas = Santa.new(genders[g], ethnicities[e])
     #prints santa to the screen
