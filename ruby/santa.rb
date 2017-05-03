@@ -8,7 +8,7 @@ class Santa
 	  
 	  @gender = gender
 	  @ethnicity = ethnicity
-	  @age = 0
+	  @age = 1 + rand(140)
 	  @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 	end
 
@@ -33,35 +33,24 @@ class Santa
 			index += 1
 		end
 	end
-=begin
-	def gender=(new_gender)
-		@gender = new_gender
-	end
-	def age
-		@age 
-	end
-	def ethnicity
-		@ethnicity
-	end
-=end 
+
 end
 
 santas = []
 genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
-ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-
-genders.length.times do |i|
+ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A", "Martian", "Icelandic", "Native American"]
+# Instantiate 50 santas
+index = 0
+while index < 50
+	#randomizes individually
 	g = 1 + rand(7)
-	e = 1 + rand(7)
-  santas << Santa.new(genders[g], ethnicities[e])
+	e = 1 + rand(10)
+	#initializes a santa
+    santas = Santa.new(genders[g], ethnicities[e])
+    #prints santa to the screen
+    puts "Santa #{index + 1} is a #{santas.ethnicity} #{santas.gender} and #{santas.age} years old!" 
+    index += 1
 end
-santas[2].gender = "whatever"
-santas[2].celebrate_birthday
-puts santas[2].ethnicity
-puts santas[2].age
-#p santas[2]
-#p santas
-santas[2].get_mad_at("Dasher")
-p santas[2]
+
 
 
