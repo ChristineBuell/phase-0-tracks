@@ -1,4 +1,17 @@
 =begin
+Release 4: Reflections
+
+
+
+
+
+
+=end
+
+
+
+
+=begin
 # Method to create a list
 # input: string of items separated by spaces (example: "carrots apples cereal pizza")
 # steps: 
@@ -27,7 +40,7 @@ def createlist(list)
   splitlist.each do |item|
     hasharray << {item: item, qty: 1}
   end
-
+  print_list(hasharray)
   hasharray
 end
 
@@ -59,11 +72,7 @@ end
 =end
 
 def removeitem(list, item)
-#  list.each do |position|
-#    if position[:item] == item
-#      po.delete_if
-#    end
-#  end
+
   list.delete_if { |iterator| iterator[:item] == item }
 end
 
@@ -77,6 +86,20 @@ end
 - Update that items qty key to new value
 # output:
 The updated item value and its qty, using the print method
+=end 
+def update_amount(list, item, amount)
+
+	list.each do |iterator|
+		if iterator[:item] == item
+			iterator.replace({item: item, qty: amount}) 
+		end
+	end
+	list
+end
+
+
+
+=begin
 
 # Method to print a list and make it look pretty
 # input:
@@ -87,15 +110,30 @@ The updated item value and its qty, using the print method
 # output:
 Formatted list like this 'Carrots - QTY 1'
 =end
+def print_list(list)
+	list.each do |iterator|
+	puts "#{iterator[:item].split.map(&:capitalize).join(' ')} - QTY #{iterator[:qty]}"
+	end
+
+end
+
+
 
 list = "grapes apples bagels milk lentils eggs" 
 item_array = []
 
 item_array = createlist(list)
-p item_array
+additem(item_array, "lemonade", 2)
+additem(item_array, "tomatoes", 3)
+additem(item_array, "onions")
+additem(item_array, "ice cream", 4)
 
 
 
+removeitem(item_array, "lemonade")
+update_amount(item_array, "ice cream", 1)
+
+print_list(item_array)
 
 
 
