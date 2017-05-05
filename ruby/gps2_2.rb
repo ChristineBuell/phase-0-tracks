@@ -1,10 +1,21 @@
 =begin
 Release 4: Reflections
 
+I realized that I had not been pseudocoding in enough detail, I hadn't made the connection that a line of pseudocode then 
+	translating into a line of actual code. 
 
+We used an array for taking in the initial space delimited list, It's (I find) easier to work with arrays for i/o operations, searching etc. 
+	But for the grocery list exercise a hash with its key/value structure made more sense. 
+	
+A method returns the result of the last operation. 
 
+About anything can be passed to a method as an argument: variables, arrays, hashes, other methods.
 
+To pass information from one method to another, you can call one method from another. 
 
+I felt more comfortable with Ruby methods, but I still feel unsure of myself with hashes. I have to keep, looking up the documentation 
+	for simple operations. I realize that programmers are always looking things up, but I feel like I need to be better grounded than 
+	this. I don't feel the same way about arrays, maybe because I've used them before. 
 
 =end
 
