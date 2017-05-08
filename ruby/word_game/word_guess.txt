@@ -1,0 +1,27 @@
+Driver code enters word for guessing
+	Taken in as a string
+	Word split out into character array
+guess_count equals word length
+guess_count keeps array of guesses
+	Guessing the same letter twice won't count against the guess_count countdown(so guess count could be guess_array.length)
+Outline of word is printed to screen: Underscores for each letter with quotes on each end
+Correct guess starts as array of underscores that are replaced as correct letters are added.
+
+
+User enters a letter
+Every guess entered causes feedback:
+Check length of string to see if letter or word
+	Letter checks to see if letter already guessed.
+		IF yes, message, says how many more tries
+
+		IF no, checks against word
+		correct reprints screen
+			*check for all letters being filled in, user should be able to win if they guess all the letter but never enter the word!
+			Check against correct word array for placement(s) of letter
+			Every correct guess causes string to reprint to screen with correct letters in placement
+		incorrect says to try again you have x many more tries
+
+	If multiple letters (word)
+		check against original word entered
+		IF matches, user wins in x many guesses (including word)
+		IF not, user is taunted and game over
