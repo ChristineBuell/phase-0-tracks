@@ -90,7 +90,7 @@ it "Prints you win when word guessed" do
 	expect(word_guess.game_over_win()).to eq "You WIN in 4 guesses!"
 
 end
-
+# Both this and the last test work, but they don't both run at the same time
 it "Prints you lose when word not guessed" do
 	word_guess.start_game("ruby")
 	word_guess.guess_letter("u")

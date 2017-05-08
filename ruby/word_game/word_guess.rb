@@ -33,6 +33,7 @@ class Word_Guess
 	  end
 
 	  def guess_letter(a_letter)
+	  	# Takes in letter and checks to see if it's been guessed already
 	   	puts ""
 	    letter = a_letter.downcase
 	    puts "You tried letter #{letter}."
@@ -42,24 +43,28 @@ class Word_Guess
       		else
       			@guesses_left -= 1
 	    		@already_guessed.push(letter)
+	    		check_and_place_letter(letter)
 			end
-	    @found_flag = 0
-	    @word.each_index do |index|
-		     if @word[index] == letter
-		        @correct[index] = letter
-		        @found_flag = 1
-		     end
-	     end
+		end
+
+
+		def check_and_place_letter(letter)
+	    	@found_flag = 0
+	    	@word.each_index do |index|
+		     	if @word[index] == letter
+		       	 	@correct[index] = letter
+		        	@found_flag = 1
+		    	 end
+	    	 end
 	     		
-			    if @found_flag == 1 
+			 if @found_flag == 1 
 			      result = "#{letter} IS in the word."
 			      update_progress()
-			    end
-			    if @found_flag != 1 && 
+			  end
+			  if @found_flag != 1 
 			      result = "No #{letter} is in this word."
 			      update_progress()
-			    end
-	    	#update_progress()
+			  end
 	    	return result
   		end
 
