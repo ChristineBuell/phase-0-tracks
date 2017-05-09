@@ -1,24 +1,29 @@
 /*
-Function takes in a string
-Return reversed word using for loop
-initialize a second index at 0: j=0
+Function to reverse a string
+
+It takes in a string
+
 For string.length, i >= 0, i--
-	newStr[j] += str[i]
-	j++
-increment up j and down i	
+	newString += string[i];
 
-	
-
-
-
-
+return newString
+If condition met
+print newString to console	
 
 */
 
 
-function reverseWord
+function reverseWord(str){
 
-	for (var i = str.length; i >= 0; i--){
-		var reversedString += str.substr(i, 1);
-
+var reversedString = "";
+for (var i = str.length -1; i >= 0; i--){
+		reversedString += str[i];	
 	}
+	return reversedString;
+}
+
+var outerStr = reverseWord("JavaScript!")
+
+if (outerStr.length > 1){
+console.log(outerStr);
+}
