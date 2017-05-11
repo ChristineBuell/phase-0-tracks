@@ -18,10 +18,13 @@ class VirusPredictor
     # The function virus_effects calls two methods. Each one calculates and prints
     # a part of the total virus effects by state statment.
   def virus_effects
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
-  end
+  
+    
+    speed_of_spread(predicted_deaths(@population_density, @population, @state)) 
 
+    #predicted_deaths(@population_density, @population, @state)
+    #speed_of_spread(@population_density, @state) 
+  end
   # predicted_deaths and speed_of_spread are private methods. They can't be accessed with the 
   # dot operator, they can only be accessed from inside the class. The instance of VirusPredictor calls virus_effects
   # which calls the two private methods. Any methods after private are private, unless public or protected is declared.
@@ -49,7 +52,8 @@ class VirusPredictor
    # speed_of_spread evaluates population density to find the number of monthes for 
    # outbreak to spread and assigns the number to the speed variable. This is then printed out
    # to complete the statementx.
-  def speed_of_spread(population_density, state) #in months
+   def speed_of_spread(predicted_deaths)
+   #def speed_of_spread(population_density, state) #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
     speed = 0.0
@@ -80,7 +84,7 @@ end
  index = 0
 STATE_DATA.each do |state, pop|
 states[index] = VirusPredictor.new(state, pop[:population_density],pop[:population])
-states[index].virus_effects
+print states[index].virus_effects
 index += 1
 end
 
