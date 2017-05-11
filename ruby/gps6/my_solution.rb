@@ -18,12 +18,8 @@ class VirusPredictor
     # The function virus_effects calls two methods. Each one calculates and prints
     # a part of the total virus effects by state statment.
   def virus_effects
-  
-    
-    speed_of_spread(predicted_deaths(@population_density, @population, @state)) 
+    speed_of_spread(predicted_deaths()) 
 
-    #predicted_deaths(@population_density, @population, @state)
-    #speed_of_spread(@population_density, @state) 
   end
   # predicted_deaths and speed_of_spread are private methods. They can't be accessed with the 
   # dot operator, they can only be accessed from inside the class. The instance of VirusPredictor calls virus_effects
@@ -32,7 +28,8 @@ class VirusPredictor
     # predicted_deaths logic evaluates the population_density number to 
     # choose a percentage to multiply population with which is rounded down with .floor.
     # The first half of the total statement is printed out.  
-  def predicted_deaths(population_density, population, state)
+ 
+   def predicted_deaths()
     # predicted deaths is solely based on population density
     if @population_density >= 200
       number_of_deaths = (@population * 0.4).floor
@@ -53,7 +50,6 @@ class VirusPredictor
    # outbreak to spread and assigns the number to the speed variable. This is then printed out
    # to complete the statementx.
    def speed_of_spread(predicted_deaths)
-   #def speed_of_spread(population_density, state) #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
     speed = 0.0
