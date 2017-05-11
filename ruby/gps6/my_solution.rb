@@ -86,19 +86,31 @@ end
 
 
 =begin
-
-alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population])
-alabama.virus_effects
-
-jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population])
-jersey.virus_effects
-
-california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population])
-california.virus_effects
-
-alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
-alaska.virus_effects
-=end
-
 #=======================================================================
 # Reflection Section
+
+The two hash syntax: 
+  The most obvious difference to me is the use of the hash rocket in the outer hash and bracket notation
+  for the inner hash. 
+
+require_relative vs require
+  require_relative looks for the related file in the directory and links to it. require looks for and loads libraries into your 
+  program. Once it loads the requested files, it doesn't keep reloading them. Ruby checks to see if they're already loaded first. 
+
+Some ways to iterate through a hash
+  You can iterate through a loop with .each or .map. You could also use a loop like a while loop, but it's not ideal.
+
+
+What stood out about variables in virus effects, if anything?
+  The only thing that stood out to me was that as instance variables, they didn't need to be passed from method
+  to method.
+
+
+What concept did I most solidify?
+  Two concepts were the most valuable, the refactoring and iterated through a nested hash.
+
+
+=end
+
+
+
