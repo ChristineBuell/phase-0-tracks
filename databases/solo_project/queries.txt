@@ -1,0 +1,102 @@
+
+
+Display the cars table:
+
+sqlite> SELECT * FROM cars;
+1|civic|20000|2015|true|1
+2|F150|25000|2016|false|3
+3|Sienna|30000|2010|false|2
+4|Corolla|18500|2017|true|2
+5|Fiesta|14000|2017|true|3
+
+
+Changed price of the Corolla:
+
+sqlite> UPDATE cars SET price=19000 WHERE name="Corolla";
+sqlite> SELECT * FROM cars;
+1|civic|20000|2015|true|1
+2|F150|25000|2016|false|3
+3|Sienna|30000|2010|false|2
+4|Corolla|19000|2017|true|2
+5|Fiesta|14000|2017|true|3
+
+
+Display information in both tables with one query:
+
+sqlite> SELECT cars.name, cars.price, cars.year, cars.fuel_efficient, manufacturers.name FROM cars JOIN manufacturers ON cars.manufacturer_id = manufacturers.id;
+Civic|20000|2015|true|Honda
+F150|25000|2016|false|Ford
+Sienna|30000|2010|false|Toyota
+Corolla|19000|2017|true|Toyota
+Fiesta|14000|2017|true|Ford
+
+
+Display a small amount of information pulled from both tables:
+
+sqlite> SELECT cars.name, cars.price, manufacturers.name FROM cars JOIN manufacturers ON cars.manufacturer_id = manufacturers.id;
+Civic|20000|Honda
+F150|25000|Ford
+Sienna|30000|Toyota
+Corolla|19000|Toyota
+Fiesta|14000|Ford
+
+
+Deleted an item with a condition:
+
+sqlite> DELETE FROM cars WHERE price > 25000;
+sqlite> SELECT * FROM cars;
+
+1|Civic|20000|2015|true|1
+2|F150|25000|2016|false|3
+4|Corolla|19000|2017|true|2
+5|Fiesta|14000|2017|true|3
+
+
+Cross Join: returns every row in one table matched with every row in the other.
+
+sqlite> SELECT cars.name, cars.year FROM cars CROSS JOIN manufacturers;
+Civic|2015
+Civic|2015
+Civic|2015
+F150|2016
+F150|2016
+F150|2016
+Corolla|2017
+Corolla|2017
+Corolla|2017
+Fiesta|2017
+Fiesta|2017
+Fiesta|2017
+
+
+Inner Join price greater less than 20000
+
+sqlite> SELECT cars.name, year FROM cars INNER JOIN manufacturers ON cars.price < 20000;
+Corolla|2017
+Corolla|2017
+Corolla|2017
+Fiesta|2017
+Fiesta|2017
+Fiesta|2017
+
+Using DISTINCT keyword causes it to only print each column once!
+
+sqlite> SELECT DISTINCT cars.name, year FROM cars INNER JOIN manufacturers ON cars.price < 20000;
+Corolla|2017
+Fiesta|2017
+
+
+Inner Join: 
+sqlite> SELECT DISTINCT cars.name, year, fuel_efficient FROM cars INNER JOIN manufacturers ON cars.manufacturer_id = manufacturers.id;
+Civic|2015|true
+F150|2016|false
+Corolla|2017|true
+Fiesta|2017|true
+
+
+Left Outer Join: all rows from first table and all rows from second that match the joining field.
+
+
+
+
+
