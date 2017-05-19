@@ -1,0 +1,172 @@
+
+
+Display the cars table:
+
+sqlite> SELECT * FROM cars;
+1|Civic|20000|2015|true|1
+2|F150|25000|2016|false|3
+4|Corolla|19000|2017|true|2
+5|Fiesta|14000|2017|true|3
+6|Citgo|10000|2015|true|5
+7|Model S|135000|2017|true|4
+8|Pilot|40000|2016|false|1
+9|Expedition|35000|2015|false|3
+10|Mini Cooper|30000|2017|true|6
+sqlite> 
+
+
+Changed price of the Civic:
+
+sqlite> UPDATE cars SET price=22000 WHERE name="Civic";
+sqlite> SELECT name, price, year FROM cars WHERE name="Civic";
+Civic|22000|2015
+sqlite> 
+
+
+Display information in both tables with one query:
+
+sqlite> SELECT * FROM cars JOIN manufacturers ON cars.manufacturer_id = manufacturers.id;
+1|Civic|22000|2015|true|1|1|Honda|Japan|false
+2|F150|25000|2016|false|3|3|Ford|USA|true
+4|Corolla|19000|2017|true|2|2|Toyota|Japan|false
+5|Fiesta|14000|2017|true|3|3|Ford|USA|true
+6|Citgo|10000|2015|true|5|5|Skoda|Czech Republic|false
+7|Model S|135000|2017|true|4|4|Tesla|USA|true
+8|Pilot|40000|2016|false|1|1|Honda|Japan|false
+9|Expedition|35000|2015|false|3|3|Ford|USA|true
+10|Mini Cooper|30000|2017|true|6|6|Mini|UK|false
+
+
+Display a small amount of information pulled from both tables:
+
+sqlite> SELECT cars.name, cars.price, manufacturers.name FROM cars JOIN manufacturers ON cars.manufacturer_id = manufacturers.id;
+Civic|22000|Honda
+F150|25000|Ford
+Corolla|19000|Toyota
+Fiesta|14000|Ford
+Citgo|10000|Skoda
+Model S|135000|Tesla
+Pilot|40000|Honda
+Expedition|35000|Ford
+Mini Cooper|30000|Mini
+
+
+Deleted an item with a condition:
+
+sqlite> DELETE FROM cars WHERE price > 50000;
+sqlite> SELECT * FROM cars;
+1|Civic|22000|2015|true|1
+2|F150|25000|2016|false|3
+4|Corolla|19000|2017|true|2
+5|Fiesta|14000|2017|true|3
+6|Citgo|10000|2015|true|5
+8|Pilot|40000|2016|false|1
+9|Expedition|35000|2015|false|3
+10|Mini Cooper|30000|2017|true|6
+
+********* Different Joinsn ***************
+
+
+Inner Join: The most common kind of join. Pulls data from the two tables based on criterea. 
+
+sqlite> SELECT cars.name, cars.price, cars.year, manufacturers.name, manufacturers.country_of_origin FROM cars INNER JOIN manufacturers ON cars.manufacturer_id = manufacturers.id;
+Civic|22000|2015|Honda|Japan
+F150|25000|2016|Ford|USA
+Corolla|19000|2017|Toyota|Japan
+Fiesta|14000|2017|Ford|USA
+Citgo|10000|2015|Skoda|Czech Republic
+Pilot|40000|2016|Honda|Japan
+Expedition|35000|2015|Ford|USA
+Mini Cooper|30000|2017|Mini|UK
+
+
+Inner Join price greater less than 20000
+
+sqlite> SELECT cars.name, cars.price, cars.year, manufacturers.name, manufacturers.country_of_origin FROM cars INNER JOIN manufacturers ON cars.manufacturer_id = manufacturers.id AND cars.price < 20000;
+Corolla|19000|2017|Toyota|Japan
+Fiesta|14000|2017|Ford|USA
+Citgo|10000|2015|Skoda|Czech Republic
+
+
+
+Left Outer Join: If the second table doesn't have any data to correspond, it leaves a blank space.
+Tesla and Mercedes-Benz don't have an cars in the cars table, so they just have blank spaces in between company name and country of origin.
+
+sqlite> SELECT manufacturers.name, cars.name, manufacturers.country_of_origin FROM manufacturers LEFT OUTER JOIN cars ON manufacturers.id = cars.manufacturer_id;
+Honda|Civic|Japan
+Honda|Pilot|Japan
+Toyota|Corolla|Japan
+Ford|Expedition|USA
+Ford|F150|USA
+Ford|Fiesta|USA
+Tesla||USA
+Skoda|Citgo|Czech Republic
+Mini|Mini Cooper|UK
+Mercedes-Benz||Germany
+
+
+
+Cross Join: returns every row in one table matched with every row in the other. 
+
+sqlite> SELECT cars.name, cars.price, cars.year FROM cars CROSS JOIN manufacturers;
+Civic|22000|2015
+Civic|22000|2015
+Civic|22000|2015
+Civic|22000|2015
+Civic|22000|2015
+Civic|22000|2015
+Civic|22000|2015
+F150|25000|2016
+F150|25000|2016
+F150|25000|2016
+F150|25000|2016
+F150|25000|2016
+F150|25000|2016
+F150|25000|2016
+Corolla|19000|2017
+Corolla|19000|2017
+Corolla|19000|2017
+Corolla|19000|2017
+Corolla|19000|2017
+Corolla|19000|2017
+Corolla|19000|2017
+Fiesta|14000|2017
+Fiesta|14000|2017
+Fiesta|14000|2017
+Fiesta|14000|2017
+Fiesta|14000|2017
+Fiesta|14000|2017
+Fiesta|14000|2017
+Citgo|10000|2015
+Citgo|10000|2015
+Citgo|10000|2015
+Citgo|10000|2015
+Citgo|10000|2015
+Citgo|10000|2015
+Citgo|10000|2015
+Pilot|40000|2016
+Pilot|40000|2016
+Pilot|40000|2016
+Pilot|40000|2016
+Pilot|40000|2016
+Pilot|40000|2016
+Pilot|40000|2016
+Expedition|35000|2015
+Expedition|35000|2015
+Expedition|35000|2015
+Expedition|35000|2015
+Expedition|35000|2015
+Expedition|35000|2015
+Expedition|35000|2015
+Mini Cooper|30000|2017
+Mini Cooper|30000|2017
+Mini Cooper|30000|2017
+Mini Cooper|30000|2017
+Mini Cooper|30000|2017
+Mini Cooper|30000|2017
+Mini Cooper|30000|2017
+sqlite> 
+
+
+
+
