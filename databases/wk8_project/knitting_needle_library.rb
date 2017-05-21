@@ -29,7 +29,7 @@ SQL
 
 #kdb.execute("DROP TABLE knitting_needles")
 $kdb.execute(create_table)
-$kdb.execute("INSERT INTO knitndls(size, length, is_available, where_is_it) VALUES ('4.5', '8', 'false', 'Catherine has it')") 
+#$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('4.5', '8', 'false', 'Catherine has it')") 
 
 # Search for needles of a given size
 def needle_by_size
@@ -67,12 +67,10 @@ puts "Enter needle size (mm)"
 size = gets.chomp
 puts "Enter needle length:"
 length = gets.chomp
-is_available = true
+is_available = 'true'
 where_is_it = ""
 
 $kdb.execute("INSERT INTO knitndls(size, length, is_available, where_is_it) VALUES (?, ?, ?, ?)", size, length, is_available, where_is_it)
-
-
 
 end
 
