@@ -91,12 +91,13 @@ def return_pair
 
 end
 
-
+# Change status to unavailable and say who has them. 
 def loan_pair
 	puts "What is the id number of the pair of needles you are loaning out?"
 	ndl = gets.chomp.to_i
 	puts "Who is borrowing them?"
-	where_ndls = gets.chomp.delete(?').tr ' ', ?_
+	# To keep from crashing, remove apostrophes. 
+	where_ndls = gets.chomp.delete(?')#.tr ' ', ?_
    	$kdb.execute("UPDATE knitndls SET is_available = 'false', where_is_it = '#{where_ndls}' WHERE id = #{ndl}")
 
 end
