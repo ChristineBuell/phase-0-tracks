@@ -35,7 +35,20 @@ $kdb.execute(create_table)
 def needle_by_size
 puts "What size needle are you looking for?"
 ndl = gets.chomp
-knitndls.each do |ndlsize|
+stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls where size == ?" )
+  rs = stm.execute
+   while (row = rs.next) do
+   	if row['is_available'] == 'true'
+		puts %Q{Needle size #{row['size']} in #{row['length']} inch length is available to use.}
+	else 
+		puts %Q{Needle size: #{row['size']} in #{row['length']} inch length is not available because: #{row['where_is_it']}.}
+     end
+    end
+end
+
+=begin
+
+dlsize|
 	if size = ndl 
 	temp = $kdb.execute("SELECT * FROM knitndls WHERE name = ?", ndl)
 	puts temp
@@ -43,27 +56,25 @@ end
 end
 
 end 
-
+=end 
 def print_list
 
-
-
-
-
-  $kdb.execute( "select * from knitndls" ) do |row|
-  	
-  	puts %Q{Needle size: #{knitndls['size']} in #{knitndls['length']} length is available = #{knitndls['is_available']}}
-   # p row
-  end
+ stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
+  rs = stm.execute
+   while (row = rs.next) do
+   	if row['is_available'] == 'true'
+		puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is available to use.}
+	else 
+		puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is not available because: #{row['where_is_it']}.}
+     
+    end
+	end
+   
 end
-=begin
-row = $kdb.execute("SELECT * FROM knitndls")
-puts row 
 
-end
-=end 
+# Add needles to collection
 def add_needles
-puts "Enter needle size (mm)"
+puts "Enter needle size (US)"
 size = gets.chomp
 puts "Enter needle length:"
 length = gets.chomp
@@ -83,17 +94,14 @@ exit
 end
 
 loop do 
-	puts "Here are your options:
-		1.  Print list of needles in your collection
-		2.  Add pair of needles
+		puts "\n\t\tPlease choose from the following:\n
+		1.  Print a list of needles in your collection
+		2.  Add a pair of needles
 		3.  Search by needle size
-		4.  Mark a pair as unavailable
+		4.  Update the availability of a pair of needles
+		5.  Remove a pair from your collection
 		5.  Quit"
 
-
-
-
-		
 
 		case gets.chomp
 		when '1'
@@ -105,6 +113,8 @@ loop do
 		when '4'
 			puts "need a method for this"
 		when '5'
+			puts "need a method for this"
+		when '6'
 			end_session
 		end
 	end
