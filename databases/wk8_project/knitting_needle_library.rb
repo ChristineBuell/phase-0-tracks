@@ -80,6 +80,31 @@ $kdb.execute("INSERT INTO knitndls(size, length, is_available, where_is_it) VALU
 
 end
 
+def update_availability
+puts "What is the id number of the pair of needles you have back in your collection?"
+ndl = gets.chomp.to_i
+ stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
+  rs = stm.execute
+   while (row = rs.next) do
+   	if row['id'] == ndl
+		row['is_available'] = 'true'
+		row['where_is_it'] = ""
+		puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is now available to use.}
+	end
+	end
+   
+end
+
+def delete_pair
+puts "What is the id number of the pair of needles you want to remove?"
+ndl = gets.chomp.to_i
+
+$kdb.execute("DELETE FROM knitndls WHERE id = #{ndl}")
+  
+
+
+end
+
 # Exit the database
 def end_session
 puts "exiting now"
@@ -92,9 +117,10 @@ loop do
 		1.  Print a list of needles in your collection
 		2.  Add a pair of needles
 		3.  Search by needle size
-		4.  Update the availability of a pair of needles
-		5.  Remove a pair from your collection
-		6.  Quit"
+		4.  Return a pair to your collection
+		5.  Loan a pair from your collection
+		6.  Remove a pair from your collection
+		7.  Quit"
 
 
 		case gets.chomp
@@ -105,10 +131,12 @@ loop do
 		when '3'
 			needle_by_size
 		when '4'
-			puts "need a method for this"
+			update_availability
 		when '5'
 			puts "need a method for this"
 		when '6'
+			delete_pair
+		when '7'
 			end_session
 		end
 	end
