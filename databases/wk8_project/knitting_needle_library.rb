@@ -1,7 +1,7 @@
 require 'sqlite3'
 
 # Has an entry for all knitting needles 
-# It can print out list of knitting needles (sorted by size)
+# It can print out list of knitting needles
 # It can add a knitting needle
 # It can delete a knitting needle
 # It can set one as unavailable for use (takes a string, in project or loaned to someone)
@@ -27,10 +27,16 @@ create_table = <<-SQL
   )
 SQL
 
-#kdb.execute("DROP TABLE knitting_needles")
 $kdb.execute(create_table)
-#$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('4.5', '8', 'false', 'Catherine has it')") 
 
+ #Some data to add in for testing. Uncomment and then comment out after the first time you run it
+=begin
+$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('5', '8', 'false', 'Kira has them')") 
+$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('13', '12', 'false', 'Catherine has them')") 
+$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('2', '16', 'false', 'Sally has them')") 
+$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('7', '6', 'true', '')") 
+$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('13', '6', 'true', '')") 
+=end
 
 
 # Search for needles of a given size 
@@ -45,7 +51,7 @@ stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from kni
    			if row['is_available'] == 'true'
 				puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is available to use.}
 			else 
-				puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is not available because: #{row['where_is_it']}.}
+				puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length have been loaned to: #{row['where_is_it']}.}
      		end
      	end
     end
@@ -53,62 +59,61 @@ end
 
 
 def print_list
-
- stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
-  rs = stm.execute
-   while (row = rs.next) do
-   	if row['is_available'] == 'true'
-		puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is available to use.}
-	else 
-		puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is not available because: #{row['where_is_it']}.}
-     
-    end
+ 	stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
+ 	rs = stm.execute
+   	while (row = rs.next) do
+   		if row['is_available'] == 'true'
+			puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is available to use.}
+		else 
+			puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length have been loaned to: #{row['where_is_it']}.}
+    	end
 	end
    
 end
 
 # Add needles to collection
 def add_needles
-puts "Enter needle size (US)"
-size = gets.chomp
-puts "Enter needle length:"
-length = gets.chomp
-is_available = 'true'
-where_is_it = ""
+	puts "Enter needle size (US)"
+		size = gets.chomp
+	puts "Enter needle length:"
+		length = gets.chomp
+	    is_available = 'true'
+		where_is_it = ""
 
-$kdb.execute("INSERT INTO knitndls(size, length, is_available, where_is_it) VALUES (?, ?, ?, ?)", size, length, is_available, where_is_it)
+	$kdb.execute("INSERT INTO knitndls(size, length, is_available, where_is_it) VALUES (?, ?, ?, ?)", size, length, is_available, where_is_it)
+end
+
+# Return a pair back into the collection
+def return_pair
+	puts "What is the id number of the pair of needles you have back in your collection?"
+	ndl = gets.chomp.to_i
+   	$kdb.execute("UPDATE knitndls SET is_available = 'true', where_is_it = '' WHERE id = #{ndl}")
 
 end
 
-def update_availability
-puts "What is the id number of the pair of needles you have back in your collection?"
-ndl = gets.chomp.to_i
- stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
-  rs = stm.execute
-   while (row = rs.next) do
-   	if row['id'] == ndl
-		row['is_available'] = 'true'
-		row['where_is_it'] = ""
-		puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is now available to use.}
-	end
-	end
-   
+
+def loan_pair
+	puts "What is the id number of the pair of needles you are loaning out?"
+	ndl = gets.chomp.to_i
+	puts "Who is borrowing them?"
+	where_ndls = gets.chomp.delete(?').tr ' ', ?_
+   	$kdb.execute("UPDATE knitndls SET is_available = 'false', where_is_it = '#{where_ndls}' WHERE id = #{ndl}")
+
 end
 
+
+# Remove a pair of needles permanently from the collection
 def delete_pair
-puts "What is the id number of the pair of needles you want to remove?"
-ndl = gets.chomp.to_i
-
-$kdb.execute("DELETE FROM knitndls WHERE id = #{ndl}")
-  
-
+	puts "What is the id number of the pair of needles you want to remove?"
+	ndl = gets.chomp.to_i
+	$kdb.execute("DELETE FROM knitndls WHERE id = #{ndl}")
 
 end
 
 # Exit the database
 def end_session
-puts "exiting now"
-exit 
+	puts "exiting now"
+	exit 
 
 end
 
@@ -131,15 +136,15 @@ loop do
 		when '3'
 			needle_by_size
 		when '4'
-			update_availability
+			return_pair
 		when '5'
-			puts "need a method for this"
+			loan_pair
 		when '6'
 			delete_pair
 		when '7'
 			end_session
 		end
-	end
+end
 
  
 
