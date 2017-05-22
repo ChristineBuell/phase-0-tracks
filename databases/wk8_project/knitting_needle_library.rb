@@ -31,32 +31,27 @@ SQL
 $kdb.execute(create_table)
 #$kdb.execute("INSERT INTO knitndls (size, length, is_available, where_is_it) VALUES ('4.5', '8', 'false', 'Catherine has it')") 
 
-# Search for needles of a given size
+
+
+# Search for needles of a given size 
+# This works for a small project, but would too inefficient for a large db.
 def needle_by_size
 puts "What size needle are you looking for?"
 ndl = gets.chomp
-stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls where size == ?" )
+stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls")
   rs = stm.execute
    while (row = rs.next) do
-   	if row['is_available'] == 'true'
-		puts %Q{Needle size #{row['size']} in #{row['length']} inch length is available to use.}
-	else 
-		puts %Q{Needle size: #{row['size']} in #{row['length']} inch length is not available because: #{row['where_is_it']}.}
-     end
+   		if row['size'] ==  ndl 
+   			if row['is_available'] == 'true'
+				puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is available to use.}
+			else 
+				puts %Q{Set number #{row['id']} in size #{row['size']} in #{row['length']} inch length is not available because: #{row['where_is_it']}.}
+     		end
+     	end
     end
 end
 
-=begin
 
-dlsize|
-	if size = ndl 
-	temp = $kdb.execute("SELECT * FROM knitndls WHERE name = ?", ndl)
-	puts temp
-end
-end
-
-end 
-=end 
 def print_list
 
  stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
@@ -87,7 +82,6 @@ end
 
 # Exit the database
 def end_session
-$kdb.close
 puts "exiting now"
 exit 
 
@@ -100,7 +94,7 @@ loop do
 		3.  Search by needle size
 		4.  Update the availability of a pair of needles
 		5.  Remove a pair from your collection
-		5.  Quit"
+		6.  Quit"
 
 
 		case gets.chomp
