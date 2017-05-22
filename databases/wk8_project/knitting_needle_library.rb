@@ -4,12 +4,8 @@ require 'sqlite3'
 # It can print out list of knitting needles
 # It can add a knitting needle
 # It can delete a knitting needle
-# It can set one as unavailable for use (takes a string, in project or loaned to someone)
-# It can print list of needles that are unavailable.
-# It can print list of needles that are available.
+# It can set one as unavailable for use (takes a string, can identify who it was loaned to)
 # It can be searched for a particular size
-
-k_needle_array = []
 
 
 
@@ -57,7 +53,7 @@ stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from kni
     end
 end
 
-
+# Print list of all needles
 def print_list
  	stm = $kdb.prepare( "select id, size, length, is_available, where_is_it from knitndls" )
  	rs = stm.execute
@@ -83,7 +79,7 @@ def add_needles
 	$kdb.execute("INSERT INTO knitndls(size, length, is_available, where_is_it) VALUES (?, ?, ?, ?)", size, length, is_available, where_is_it)
 end
 
-# Return a pair back into the collection
+# Return a pair to the collection
 def return_pair
 	puts "What is the id number of the pair of needles you have back in your collection?"
 	ndl = gets.chomp.to_i
@@ -97,7 +93,7 @@ def loan_pair
 	ndl = gets.chomp.to_i
 	puts "Who is borrowing them?"
 	# To keep from crashing, remove apostrophes. 
-	where_ndls = gets.chomp.delete(?')#.tr ' ', ?_
+	where_ndls = gets.chomp.delete(?')
    	$kdb.execute("UPDATE knitndls SET is_available = 'false', where_is_it = '#{where_ndls}' WHERE id = #{ndl}")
 
 end
