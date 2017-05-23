@@ -30,6 +30,9 @@ requesting to send data to the server, such as information from web forms.
 Cookies:
 	There was a lot of upset about them years ago, in a large part due to tracking, but they also are useful for remembering your settings
 at a website, or remembering things like login and password info. A cookie is a small piece of code that the server gives the web browser. 
-There is a lot of variation in what cookies do, some are permanently in your browser (until you clean out the cache, unless they're zombie cookies which remake themselves.) and can track you. Others only last as long as your session at the time.
+The server for a site will send it with its response to the http request, and is saved in your browser. There is a lot of variation in how they 
+behave, permenant cookies aren't actually permenant, but they expire at a certain date, while others only last as long as your session at the time. 
+Hackers can hijack them to get session info (like when you're logged into your bank), so it's very important not to let any information be 
+saved for sites like that. I was intrigued by something I saw listed as "Zombie" cookies. They go into upper memory when your computer is on, so if you delete them theyremake themselves. They also can track multiple browsers on the same machine. I thought that they must be used for gathering information on people without their knowlege eg bad reasons, but I read that theyare also used to keep people that have been banned from websites from simply making a new user name and logging in again. 
 	
 
