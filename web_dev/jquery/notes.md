@@ -12,6 +12,9 @@ I learn better by doing, so as soon as I figure out how I'll try a simple jQuery
 I'll test that too.
 
 
-jQuery is a library. The easiest way to access it is for a script tag directing that it be downloaded from a third party site like 
-google or microsoft to be placed the header of index.html. One reason its popular is it's completely cross browser compatible. jQuery uses a $ to 
-signify its jQuery. 
+After two hours:
+
+The google searches got a lot of good information (and a lot of unhelpful as well.) I spent the most time at w3school going through
+some of theie small exercises. read the beginning of one book, and it was good but doing the exercises was a better way to understand. 
+Maybe it was because I'd already done the other things, but the last thing I did was go to Digital Ocean and read their intro to jQuery 
+and it made the most sense to me. So I think trying it out and then rereading made it more clear. 
