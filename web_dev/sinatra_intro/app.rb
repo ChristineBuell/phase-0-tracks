@@ -58,6 +58,15 @@ contact_info
 
 end
 
+get '/great_job' do
+
+  name = params[:name]
+  if name
+    "Great Job #{name}!"
+ else 
+  "Great Job!"
+end
+end
 
 
 
