@@ -8,6 +8,7 @@ db.results_as_hash = true
 # write a basic GET route
 # add a query parameter
 # GET /
+
 get '/' do
   "#{params[:name]} is #{params[:age]} years old."
 end
@@ -44,3 +45,27 @@ get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
 end
+
+get '/contact' do 
+students = db.execute("SELECT * FROM students")
+contact_info = ""
+students.each do |student|
+contact_info << "#{student['name']}<br>"
+contact_info << "123 Somewhere lane <br>"
+contact_info << "Sequim, WA 98773<br> <br>"
+end
+contact_info
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
