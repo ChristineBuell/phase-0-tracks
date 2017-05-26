@@ -80,22 +80,21 @@ get '/add_two' do
   "#{params[:num1]} + #{params[:num2]} = #{final_result.to_s}"
 end
 
-get '/get_campus' do
+# Bonus exercise: search by campus (SEA, SF etc)
+get '/by_campus' do
 
-  place = params[:campus]
-  "Campus: #{params[:campus]}"
+  "This is a list of students from the #{params['campus']} campus<br><br>"
+  student_name = "This is a list of students from the #{params['campus']} campus<br><br>"
+  students = db.execute("SELECT * FROM students WHERE campus=?",[params['campus']])
+
   students.each do |student|
-  find_campus = db.execute("SELECT * FROM students WHERE campus=?", [params[:campus]][0])
-   "#{params[:name]} is at #{params[:campus]} campus."
-
+  student_name << "#{student['name']}<br>"
+  end
+  student_name
 end
 
 
-
-
-
- end
-
+#  db.execute("INSERT INTO campuses (location) VALUES (?)", [params['location']])
 =begin
 Release 1 
 
