@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="jqex.css">
+<title>jQuery Example</title>
+</head>
+<body>
+<h1>Select Color</h1>
+<p>
+<select name="choices">
+	<option value="red">Red</option>
+	<option value="green">Green</option>
+	<option value="blue">Blue</option>
+</select>
+<script>
+
+function changeBackground(){
+	var newColor = $( "option").val();
+	$( "body" ).css('background-color', event.target.value); 
+
+}
+
+$( "select" ).change(changeBackground);
+
+
+
+</script>
+	
+</p>
+</body>
+</html>
